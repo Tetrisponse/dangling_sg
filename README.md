@@ -73,7 +73,7 @@ python dangling_sg.py <region> [mode] [-o <output_file>]
 |:-|:-|:-|:-|:-|
 |`region`|The AWS region to audit (e.g., `us-east-1`).|**Yes**|Any valid AWS region|N/A|
 |`mode`|Controls execution safety.|No|`dry-run`, `live-delete`|`dry-run`|
-|`-o`, `--output`|Writes the report to the specified file path.|No|File path (e.g., `report.txt`)|Console output only|
+|`-o`, `--output`|Writes the report to the specified file path.|No|File path (e.g., `report`)|Console output only|
 
 ### Examples
 
@@ -87,11 +87,11 @@ python dangling_sg.py us-west-2
 
 2. **Dry Run with File Output**
 
-Checks `us-east-1` and saves the full report and CLI commands to `us_east_1_audit.txt`.
+Checks `us-east-1` and saves the full report and CLI commands to `us_east_1_audit.txt` and to `us_east_1_audit.json`.
 
 ```
 Bash
-python dangling_sg.py us-east-1 -o us_east_1_audit.txt
+python dangling_sg.py us-east-1 -o us_east_1_audit
 ```
 
 3. **Live Delete (USE WITH EXTREME CAUTION)**
