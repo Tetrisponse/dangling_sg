@@ -75,7 +75,67 @@ python dangling_sg.py <region> [mode] [-o <output_file>]
 |`mode`|Controls execution safety.|No|`dry-run`, `live-delete`|`dry-run`|
 |`-o`, `--output`|Writes the report to the specified file path.|No|File path (e.g., `report.txt`)|Console output only|
 
- 
+### Examples
+
+1. **Dry Run (Safe Audit to Console - Default Mode)**
+   
+Checks the `us-west-2` region and lists the AWS CLI commands needed for deletion, but does not execute them.
+
+```
+python dangling_sg.py us-west-2
+```
+
+2. **Dry Run with File Output**
+
+Checks `us-east-1` and saves the full report and CLI commands to `us_east_1_audit.txt`.
+
+```
+Bash
+python dangling_sg.py us-east-1 -o us_east_1_audit.txt
+```
+
+3. **Live Delete (USE WITH EXTREME CAUTION)**
+
+Executes the deletion of all identified dangling Security Groups in the `ap-southeast-2` region. Only run this after thoroughly reviewing a Dry Run report.
+
+```
+Bash
+python dangling_sg.py ap-southeast-2 live-delete
+```
+
+---
+
+## Required IAM Permissions
+
+The IAM User associated with the selected AWS profile only needs **read-only access** for a standard `dry-run` audit. Elevated privileges are needed for the `live-delete` mode.
+
+|Action|Required for|
+|:-|:-|
+|`ec2:DescribeSecurityGroups`|Core Audit Functionality|
+|`ec2:DescribeNetworkInterfaces`|Core Audit Functionality|
+|`ec2:DeleteSecurityGroup`|Required ONLY for `live-delete` mode|
+
+### Minimum Read-Only Policy (for Dry Run)
+
+```
+JSON
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeNetworkInterfaces"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+
+
 
 
 
