@@ -1,6 +1,6 @@
 # AWS Security Group Audit/Cleanup Script (dangling_sg.py)
 
-A robust Python script utilizing Boto3 to audit an AWS account for "dangling" or unused Security Groups (SGs) and provides options for safe deletion.
+A robust Python script utilizing Boto3 to audit an AWS account for "dangling" or unused Security Groups (SGs). The script also provides options for safe deletion.
 
 ---
 
