@@ -70,13 +70,9 @@ python dangling_sg.py <region> [mode] [-o <output_file>]
 ```
 
 |Argument|Description|Required|Options|Default|
-
 |:-|:-|:-|:-|:-|
-
 |`region`|The AWS region to audit (e.g., `us-east-1`).|*Yes*|Any valid AWS region|N/A|
-
 |`mode`|Controls execution safety.|No|`dry-run`, `live-delete`|`dry-run`|
-
 |`-o`, `--output`|Writes the report to the specified file path.|No|File path (e.g., `report.txt`)|Console output only|
 
  
