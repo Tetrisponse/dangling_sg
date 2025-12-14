@@ -56,6 +56,7 @@ Before running the script, set the `AWS_PROFILE` environment variable in your te
 ```bash
 # Example: Setting the profile named 'audit-new-account'
 export AWS_PROFILE=audit-new-account
+```
 
 ### Step 2: Execution
 
