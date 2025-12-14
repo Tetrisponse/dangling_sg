@@ -13,7 +13,15 @@ This script analyzes all Security Groups in a specified AWS region to determine 
 
 ### Key Logic Feature: Self-Reference Handling
 
-The script specifically identifies Security Groups that only reference **themselves** for rules (a common pattern for allowing all members of a group to talk to each other). If such a group is **not attached** to any ENI, the script correctly flags it as a delete candidate and labels it as `(Self-Ref)`, recognizing that the group is effectively orphaned.
+The script employs advanced logic to catch a common, yet often overlooked, category of unused Security Groups: **self-referencing groups that are detached from all resources**.
+
+- **The Self-Reference Pattern**: Many network designs use a security group ID in its own inbound rule (`sg-xxxxxx -> sg-xxxxxx`). This is a standard way to ensure all members *currently* or *future* assigned to that group can communicate with each other on specific ports.
+
+- **The Orphaned State**: A basic audit tool might incorrectly see this self-reference and decide the SG is "in use" or "protected." However, if a self-referencing SG is **not attached to any ENI**, it serves no function. It is an **orphaned network policy**.
+
+- **Script Action**: This script correctly identifies these groups, flags them as delete candidates, and explicitly labels them as (`Self-Ref`). This is valuable because these groups are functionally useless and should be cleaned up. Deleting them **will not** impact any active network traffic, as no resources are currently assigned to them.
+
+This intelligent filtering ensures the highest degree of cleanup by targeting SGs that other tools might miss.
 
 ---
 
