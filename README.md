@@ -146,7 +146,7 @@ JSON
 
 ## Contributors
 
-[MagVeTs](https://github.com/MagVeTs)
+- [MagVeTs](https://github.com/MagVeTs)
 
 
 
