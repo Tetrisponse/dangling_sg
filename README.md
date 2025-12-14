@@ -115,7 +115,7 @@ The IAM User associated with the selected AWS profile only needs **read-only acc
 |`ec2:DescribeNetworkInterfaces`|Core Audit Functionality|
 |`ec2:DeleteSecurityGroup`|Required ONLY for `live-delete` mode|
 
-### Minimum Read-Only Policy (for Dry Run)
+### Minimum Read-Only Policy (for `dry-run`)
 
 ```
 JSON
